@@ -1,13 +1,111 @@
 <h4 class="text-center">Registre-se e mostre seu pet ao mundo!</h4>
 
 <form
-  action=""
   class="form mt-4"
-  (ngSubmit)="cadastrar()"
+  [formGroup]="novoUsuarioForm"
+  (submit)="cadastrar()"
   #cadastroForm="ngForm"
 >
-  <div class="form-group">
+  <div class="mb-3">
+    <label for="email" class="form-label">E-mail</label>
     <input
+      formControlName="email"
+      id="email"
+      class="form-control"
+      type="text"
+      placeholder="e-mail"
+      name="email"
+      required
+    />
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('email')?.errors?.required &&
+        novoUsuarioForm.get('email')?.touched
+      "
+      mensagem="E-mail obrigatório"
+    ></app-mensagem>
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('email')?.errors?.email &&
+        novoUsuarioForm.get('email')?.touched
+      "
+      mensagem="E-mail inválido"
+    ></app-mensagem>
+  </div>
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome Completo</label>
+    <input
+      formControlName="fullName"
+      id="name"
+      type="text"
+      class="form-control"
+      placeholder="Nome Completo"
+      name="nome"
+      required
+    />
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('fullName')?.errors?.required &&
+        novoUsuarioForm.get('fullName')?.touched
+      "
+      mensagem="Nome incorreto"
+    ></app-mensagem>
+    <app-mensagem
+      *ngIf="
+        novoUsuarioForm.get('fullName')?.errors &&
+        novoUsuarioForm.get('fullName')?.touched
+      "
+      mensagem="Nome incorreto"
+    ></app-mensagem>
+  </div>
+
+  <div class="mb-3">
+    <label for="user" class="form-label">Nome de Usuário</label>
+    <input
+      formControlName="userName"
+      id="user"
+      type="text"
+      class="form-control"
+      placeholder="Usuário"
+      name="usuario"
+      required
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Senha</label>
+    <input
+      formControlName="password"
+      id="password"
+      type="password"
+      class="form-control"
+      placeholder="Senha"
+      name="senha"
+      required
+    />
+  </div>
+
+  <div class="d-grid gap-2">
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="cadastroForm.invalid"
+    >
+      Cadastro
+    </button>
+  </div>
+
+  <p>Já está cadastrado? <a [routerLink]="['']">Login</a></p>
+</form>
+
+<!-- <h4 class="text-center">Registre-se e mostre seu pet ao mundo!</h4>
+
+<form class="form mt-4" (ngSubmit)="cadastrar()" #cadastroForm="ngForm">
+  <div class="mb-3">
+    <label for="email" class="form-label">E-mail</label>
+    <input
+      id="email"
       class="form-control"
       type="text"
       placeholder="e-mail"
@@ -22,8 +120,10 @@
     ></app-mensagem>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome Completo</label>
     <input
+      id="name"
       type="text"
       class="form-control"
       placeholder="Nome Completo"
@@ -38,8 +138,10 @@
     ></app-mensagem>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
+    <label for="user" class="form-label">Nome de Usuário</label>
     <input
+      id="user"
       type="text"
       class="form-control"
       placeholder="Usuário"
@@ -54,8 +156,10 @@
     ></app-mensagem>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
+    <label for="password" class="form-label">Senha</label>
     <input
+      id="password"
       type="password"
       class="form-control"
       placeholder="Senha"
@@ -81,4 +185,4 @@
   </div>
 
   <p>Já está cadastrado? <a [routerLink]="['']">Login</a></p>
-</form>
+</form> -->
